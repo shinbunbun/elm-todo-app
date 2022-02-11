@@ -39,16 +39,11 @@ update msg model =
 
     Delete arg ->
       { model
-        | todo = List.filter (checkId arg.id) model.todo
+        | todo = List.filter (\oneTodo -> oneTodo.id /= arg.id) model.todo
       }
 
     InputValue todoTitle ->
       { model | inputValue = todoTitle }
-
-
-checkId : Int -> Todo -> Bool
-checkId id todo =
-  todo.id /= id
 
 
 view : Model -> Html Msg
